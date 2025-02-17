@@ -2,7 +2,6 @@ package com.f1rst.registryapi.client;
 
 import com.f1rst.registryapi.account.AccountEntity;
 import com.f1rst.registryapi.address.AddressEmbeddable;
-import com.f1rst.registryapi.address.AddressRecord;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +17,8 @@ public class ClientEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String name;
 
     @OneToMany(mappedBy = "clientEntity", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<AccountEntity> accounts;
@@ -37,11 +38,12 @@ public class ClientEntity {
 
     public ClientEntity(ClientRecord record) {
         this.id = record.id();
+        this.name = record.name();
         this.cpfcnpj = record.cpfcnpj();
         this.typeClientEnum = record.typeClientEnum();
         this.addressEmbeddable = new AddressEmbeddable(record.address());
 
-        // Inicializa a lista de contas se o record contiver contas
+        // Inicializa a lista de contas se o record tiver contas
         if (record.accounts() != null) {
             this.accounts = record.accounts().stream()
                     .map(AccountEntity::new) // Converte cada AccountRecord em AccountEntity

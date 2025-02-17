@@ -1,4 +1,4 @@
-package com.f1rst.registryapi.client;
+package com.f1rst.registryapi.account;
 
 import com.f1rst.registryapi.agency.AgencyRecord;
 import com.f1rst.registryapi.agency.AgencyRegisterRecord;
@@ -12,20 +12,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/client")
-public class ClientController {
+@RequestMapping("/account")
+public class AccountController {
+
     @Autowired
-    private ClientService service;
+    private AccountService service;
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody @Valid ClientRecord record){
+    public ResponseEntity<String> save(@RequestBody @Valid AccountRecord record){
         service.save(record);
-        return ResponseEntity.ok("Client successfully registered");
+        return ResponseEntity.ok("Account successfully registered");
     }
 
     @GetMapping
-    public ResponseEntity<Page<ClientRecord>>
-    findAll(@PageableDefault(size = 10, sort = {"name"}) Pageable pageable){
+    public ResponseEntity<Page<AccountRecord>>
+    findAll(@PageableDefault(size = 10, sort = {"statusAccountEnum"}) Pageable pageable){
         var page = service.findAll(pageable);
         return ResponseEntity.ok(page);
     }

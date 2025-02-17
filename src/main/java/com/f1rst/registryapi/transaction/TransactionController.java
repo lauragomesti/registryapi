@@ -1,8 +1,5 @@
-package com.f1rst.registryapi.client;
+package com.f1rst.registryapi.transaction;
 
-import com.f1rst.registryapi.agency.AgencyRecord;
-import com.f1rst.registryapi.agency.AgencyRegisterRecord;
-import com.f1rst.registryapi.agency.AgencyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,20 +9,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/client")
-public class ClientController {
+@RequestMapping("/transaction")
+public class TransactionController {
+
     @Autowired
-    private ClientService service;
+    private TransactionService service;
 
     @PostMapping
-    public ResponseEntity<String> save(@RequestBody @Valid ClientRecord record){
+    public ResponseEntity<String> save(@RequestBody @Valid TransactionRecord record){
         service.save(record);
-        return ResponseEntity.ok("Client successfully registered");
+        return ResponseEntity.ok("Transaction successfully registered");
     }
 
     @GetMapping
-    public ResponseEntity<Page<ClientRecord>>
-    findAll(@PageableDefault(size = 10, sort = {"name"}) Pageable pageable){
+    public ResponseEntity<Page<TransactionRecord>>
+    findAll(@PageableDefault(size = 10) Pageable pageable){
         var page = service.findAll(pageable);
         return ResponseEntity.ok(page);
     }

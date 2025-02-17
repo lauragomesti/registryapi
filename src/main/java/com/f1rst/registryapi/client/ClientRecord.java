@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public record ClientRecord(
         Long id,
+        String name,
         @NotBlank
         String cpfcnpj,
         @NotNull
@@ -20,6 +21,7 @@ public record ClientRecord(
     public ClientRecord(ClientEntity entity) {
         this(
                 entity.getId(),
+                entity.getName(),
                 entity.getCpfcnpj(),
                 entity.getTypeClientEnum(),
                 new AddressRecord(entity.getAddressEmbeddable()),
