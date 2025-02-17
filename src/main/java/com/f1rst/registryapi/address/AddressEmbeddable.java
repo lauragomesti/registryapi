@@ -1,4 +1,4 @@
-package com.f1rst.registryapi.endereco;
+package com.f1rst.registryapi.address;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

@@ -2,11 +2,13 @@ package com.f1rst.registryapi.agency;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Table(name = "agency")
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class AgencyEntity {
     @Id
@@ -18,6 +20,12 @@ public class AgencyEntity {
     @Column(name = "agency_number", unique = true, nullable = false)
     private Integer agencyNumber;
 
-    public AgencyEntity() {
+    AgencyType agencyType;
+
+    public AgencyEntity() {}
+
+    public AgencyEntity (AgencyRegisterRecord record) {
+        this.name = record.name();
+        this.agencyNumber =  record.agencyNumber();
     }
 }

@@ -1,9 +1,9 @@
-package com.f1rst.registryapi.pagamento;
+package com.f1rst.registryapi.payment;
 
 import com.f1rst.registryapi.account.AccountEntity;
 
 
-import com.f1rst.registryapi.transacional.TransactionStatusEnum;
+import com.f1rst.registryapi.transaction.TransactionPaymentStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +29,7 @@ public class PaymentEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name="transaction_status")
-    private TransactionStatusEnum transactionStatusEnum;
+    private TransactionPaymentStatusEnum transactionStatusEnum;
 
     @Column(name="data_hora")
     private LocalDateTime dataHora;

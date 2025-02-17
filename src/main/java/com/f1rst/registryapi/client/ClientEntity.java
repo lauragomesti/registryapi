@@ -1,7 +1,7 @@
 package com.f1rst.registryapi.client;
 
 import com.f1rst.registryapi.account.AccountEntity;
-import com.f1rst.registryapi.endereco.AddressEmbeddable;
+import com.f1rst.registryapi.address.AddressEmbeddable;
 import jakarta.persistence.*;
 import lombok.*;
 
