@@ -1,9 +1,9 @@
 package com.f1rst.registryapi.agency;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 public class AgencyService {
 
     @Autowired
-    private AgencyRepositoy repository;
+    private AgencyRepository repository;
 
     public void save(AgencyRegisterRecord record) {
         repository.save(new AgencyEntity(record));
