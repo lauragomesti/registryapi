@@ -20,12 +20,15 @@ public class AgencyEntity {
     @Column(name = "agency_number", unique = true, nullable = false)
     private Integer agencyNumber;
 
-    AgencyType agencyType;
+    @Enumerated(EnumType.STRING)
+    @Column(name="agency_type", nullable = false)
+    private AgencyTypeEnum agencyType;
 
     public AgencyEntity() {}
 
     public AgencyEntity (AgencyRegisterRecord record) {
         this.name = record.name();
         this.agencyNumber =  record.agencyNumber();
+        this.agencyType = record.agencyType();
     }
 }

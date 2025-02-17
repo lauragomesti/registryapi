@@ -9,11 +9,15 @@ public record AgencyRecord(
         Long id,
         @NotBlank(message = "Nome é obrigatório!")
         String name,
-        Integer agencyNumber){
+        Integer agencyNumber,
+        AgencyTypeEnum agencyType){
 
         public AgencyRecord(AgencyEntity entity) {
-            this(entity.getId(),
+            this(
+                    entity.getId(),
                     entity.getName(),
-                    entity.getAgencyNumber());
+                    entity.getAgencyNumber(),
+                    entity.getAgencyType()
+            );
         }
 }
