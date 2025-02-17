@@ -14,18 +14,6 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalException {
 
-   @ExceptionHandler(ValidacaoException.class)
-    public ResponseEntity<ResponseError> featureException(ValidacaoException ex){
-
-       ResponseError response = new ResponseError(
-               ex.getMessage(),
-               HttpStatus.BAD_REQUEST,
-               LocalDateTime.now());
-
-       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
-
-    }
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ResponseError> treatException(Exception ex){
 
@@ -54,8 +42,8 @@ public class GlobalException {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
-    @ExceptionHandler(ValidacaoException.class)
-    public ResponseEntity treatErroRegraDeNegocio(ValidacaoException ex) {
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity treatErroRegraDeNegocio(ValidationException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 
