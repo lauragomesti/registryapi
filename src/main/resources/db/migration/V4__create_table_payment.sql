@@ -1,7 +1,11 @@
 create table payment (
     id bigint auto_increment primary key,
     id_origin_account bigint,
+    id_origin_agency bigint,
+
     id_destination_account bigint,
+    id_destination_agency  bigint,
+
     transaction_status enum('COMPLETED', 'PROCESSING', 'ERROR', 'CANCELLED'),
     data_hora timestamp,
     payment_amount double,
