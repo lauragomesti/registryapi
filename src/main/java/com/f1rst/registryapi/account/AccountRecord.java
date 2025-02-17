@@ -17,11 +17,12 @@ public record AccountRecord(
 ) {
     public AccountRecord(AccountEntity entity) {
         this(
-                entity.getAgency().getId(),
-                entity.getAccountNumber(),
+                entity.getId().getId_agency(),
+                entity.getId().getAccount_number(),
                 entity.getBalance(),
                 entity.getStatusAccountEnum(),
                 entity.getClientEntity().getId()
         );
     }
+
 }

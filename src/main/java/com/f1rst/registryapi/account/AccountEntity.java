@@ -10,17 +10,10 @@ import lombok.Data;
 @Entity
 @Data
 @AllArgsConstructor
-@IdClass(AccountIdEmbeddable.class)
 public class AccountEntity {
 
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    private AgencyEntity agency;
-
-    @Id
-    @Column(name = "account_number")
-    private Integer accountNumber;
+    @EmbeddedId
+    private AccountIdEmbeddable id;
 
     private Double balance;
 
@@ -32,15 +25,18 @@ public class AccountEntity {
     @JoinColumn(name = "id_client", referencedColumnName = "id")
     private ClientEntity clientEntity;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_agency", referencedColumnName = "id", insertable = false, updatable = false)
+    private AgencyEntity agency;
+
     public AccountEntity() {
     }
 
     public AccountEntity(AccountRecord record) {
 
-        this.agency = new AgencyEntity();
-        this.agency.setId(record.agencyId());
 
-        this.accountNumber = record.accountNumber();
+        this.id = new AccountIdEmbeddable(record.agencyId(), record.accountNumber());
+
         this.balance = record.balance();
         this.statusAccountEnum = record.statusAccountEnum();
 

@@ -23,6 +23,7 @@ public class ClientEntity {
     @OneToMany(mappedBy = "clientEntity", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<AccountEntity> accounts;
 
+    @Embedded
     @Column(name="id_address")
     private AddressEmbeddable addressEmbeddable;
 

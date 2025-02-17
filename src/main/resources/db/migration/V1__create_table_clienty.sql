@@ -7,6 +7,6 @@ create table client(
     address_complement varchar(255),
     address_city varchar(255),
     address_uf varchar(10),
-    type_client enum('pj', 'pf'),
+    type_client enum('PF', 'PJ'),
     cpfcnpj varchar(20) unique not null
 );

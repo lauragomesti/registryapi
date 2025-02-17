@@ -3,6 +3,7 @@ package com.f1rst.registryapi.payment;
 import com.f1rst.registryapi.account.AccountEntity;
 
 
+import com.f1rst.registryapi.account.AccountIdEmbeddable;
 import com.f1rst.registryapi.transaction.TransactionPaymentStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,11 +21,17 @@ public class PaymentEntity {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_origin_account", referencedColumnName = "id")
+    @JoinColumns({
+            @JoinColumn(name = "id_origin_agency", referencedColumnName = "id_agency"),
+            @JoinColumn(name = "id_origin_account", referencedColumnName = "account_number")
+    })
     private AccountEntity originAccount;
 
     @ManyToOne
-    @JoinColumn(name = "id_destination_account", referencedColumnName = "id")
+    @JoinColumns({
+            @JoinColumn(name = "id_destination_agency", referencedColumnName = "id_agency"),
+            @JoinColumn(name = "id_destination_account", referencedColumnName = "account_number")
+    })
     private AccountEntity destinationAccount;
 
     @Enumerated(EnumType.STRING)
@@ -41,11 +48,12 @@ public class PaymentEntity {
 
     public PaymentEntity(PaymentRecord record) {
         this.id = record.id();
+
         this.originAccount = new AccountEntity();
-        this.originAccount.setAccountNumber(record.originAccountId());
+        this.originAccount.setId(new AccountIdEmbeddable(record.originAgencyId(), record.originAccountId()));
 
         this.destinationAccount = new AccountEntity();
-        this.destinationAccount.setAccountNumber(record.destinationAccountId());
+        this.destinationAccount.setId(new AccountIdEmbeddable(record.destinationAgencyId(), record.destinationAccountId()));
 
         this.transactionStatusEnum = record.transactionStatusEnum();
         this.dataHora = record.dataHora();
