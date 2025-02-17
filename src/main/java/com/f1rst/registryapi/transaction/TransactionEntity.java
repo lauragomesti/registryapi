@@ -27,5 +27,15 @@ public class TransactionEntity {
 
     public TransactionEntity() {
     }
+
+    public TransactionEntity(TransactionRecord record) {
+        this.id = record.id();
+
+        this.paymentEntity = new PaymentEntity();
+        this.paymentEntity.setId(record.paymentId());
+
+        this.transactionOperationEnum = record.transactionOperationEnum();
+        this.agencyType = record.agencyType();
+    }
 }
 

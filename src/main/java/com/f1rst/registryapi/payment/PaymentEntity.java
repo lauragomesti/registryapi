@@ -39,5 +39,18 @@ public class PaymentEntity {
     public PaymentEntity() {
     }
 
+    public PaymentEntity(PaymentRecord record) {
+        this.id = record.id();
+        this.originAccount = new AccountEntity();
+        this.originAccount.setAccountNumber(record.originAccountId());
+
+        this.destinationAccount = new AccountEntity();
+        this.destinationAccount.setAccountNumber(record.destinationAccountId());
+
+        this.transactionStatusEnum = record.transactionStatusEnum();
+        this.dataHora = record.dataHora();
+        this.paymentAmount = record.paymentAmount();
+    }
+
 
 }

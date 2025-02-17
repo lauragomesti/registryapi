@@ -34,4 +34,18 @@ public class AccountEntity {
 
     public AccountEntity() {
     }
+
+    public AccountEntity(AccountRecord record) {
+
+        this.agency = new AgencyEntity();
+        this.agency.setId(record.agencyId());
+
+        this.accountNumber = record.accountNumber();
+        this.balance = record.balance();
+        this.statusAccountEnum = record.statusAccountEnum();
+
+        this.clientEntity = new ClientEntity();
+        this.clientEntity.setId(record.clientId());
+
+    }
 }

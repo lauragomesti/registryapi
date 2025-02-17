@@ -20,4 +20,16 @@ public record AddressRecord(
     String city,
     String complement
    ) {
+
+    public AddressRecord(AddressEmbeddable entity) {
+        this(
+                entity.getStreet(),
+                entity.getDistrict(),
+                entity.getCep(),
+                entity.getNumber(),
+                entity.getComplement(),
+                entity.getCity(),
+                entity.getUf()
+        );
+    }
 }

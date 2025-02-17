@@ -2,10 +2,13 @@ package com.f1rst.registryapi.client;
 
 import com.f1rst.registryapi.account.AccountEntity;
 import com.f1rst.registryapi.address.AddressEmbeddable;
+import com.f1rst.registryapi.address.AddressRecord;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Table(name = "client")
 @Entity
@@ -31,4 +34,21 @@ public class ClientEntity {
 
     public ClientEntity() {
     }
+
+    public ClientEntity(ClientRecord record) {
+        this.id = record.id();
+        this.cpfcnpj = record.cpfcnpj();
+        this.typeClientEnum = record.typeClientEnum();
+        this.addressEmbeddable = new AddressEmbeddable(record.address());
+
+        // Inicializa a lista de contas se o record contiver contas
+        if (record.accounts() != null) {
+            this.accounts = record.accounts().stream()
+                    .map(AccountEntity::new) // Converte cada AccountRecord em AccountEntity
+                    .collect(Collectors.toList());
+        } else {
+            this.accounts = new ArrayList<>();
+        }
+    }
+
 }
