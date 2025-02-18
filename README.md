@@ -22,11 +22,14 @@
 
 ---
 ##  📄 Melhorias 
- - usar mensageria (Kafka / RabbitMQ) para gerenciar em fila os fluxos operacionais
+ - usar mensageria (Kafka / RabbitMQ) para gerenciar fluxos operacionais
  - Evoluir a inclusao de novos dados para os cadastros
  - Incluir fluxo de logs entre as ações
  - Evoluir as consultas para retornar dados com maior objetivo para o cliente
  - Evoluir as Validações para retornar mensagem ao usuario mais amigavel
+ - Incluir infra estrutura como codigo para facilitar a integração continua 
+ - Dockerizar a aplicação e disponibilizar a imagem no dockerHub
+ - realizar deploy na cloud para oferecer escalabilidade
 
 
 
