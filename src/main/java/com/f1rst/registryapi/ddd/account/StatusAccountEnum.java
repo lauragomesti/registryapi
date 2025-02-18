@@ -1,5 +1,5 @@
 package com.f1rst.registryapi.ddd.account;
 
-enum StatusAccountEnum {
+public enum StatusAccountEnum {
     ACTIVE, INACTIVE;
 }

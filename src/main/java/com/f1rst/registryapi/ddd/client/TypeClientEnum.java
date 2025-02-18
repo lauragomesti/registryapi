@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TypeClientEnum {
-    PF("pf"),
-    PJ("pj");
+    PF("PF"),
+    PJ("PJ");
 
     private final String value;
 
