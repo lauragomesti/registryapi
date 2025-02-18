@@ -5,6 +5,8 @@ import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Objects;
+
 
 @Embeddable
 @Getter
@@ -21,4 +23,19 @@ public class AccountIdEmbeddable implements java.io.Serializable {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountIdEmbeddable that = (AccountIdEmbeddable) o;
+        return Objects.equals(id_agency, that.id_agency) &&
+                Objects.equals(account_number, that.account_number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_agency, account_number);
+    }
 }
+
+
