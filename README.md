@@ -7,7 +7,10 @@
 - API para o banco digital facilitar a abertura de Contas Online 
 - Objetivo é oferecer os serviços de Movimentação entre todas as 
 - suas contas e de bancos externos, alem de  extrato, saldo.
---
+
+## ⚙️ Infraestrutura como codigo:
+
+- https://github.com/lauragomesti/thebank-aws-infra
 
 ## ⚙️ Funcionalidades
 
